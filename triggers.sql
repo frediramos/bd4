@@ -11,9 +11,7 @@ END;
 
 $BODY$ LANGUAGE plpgsql;
 
-CREATE TRIGGER check_fornecedor_secundario_insert BEFORE INSERT ON produto
-FOR EACH ROW EXECUTE PROCEDURE check_fornecedor_secundario();
-CREATE TRIGGER check_fornecedor_secundario_update BEFORE UPDATE ON produto
+CREATE TRIGGER check_fornecedor_secundario_insert BEFORE INSERT OR UPDATE ON produto
 FOR EACH ROW EXECUTE PROCEDURE check_fornecedor_secundario();
 
 
@@ -30,8 +28,5 @@ END;
 
 $BODY$ LANGUAGE plpgsql;
 
-CREATE TRIGGER check_fornecedor_primario_insert BEFORE INSERT ON fornece_sec
+CREATE TRIGGER check_fornecedor_primario_insert BEFORE INSERT OR UPDATE ON fornece_sec
 FOR EACH ROW EXECUTE PROCEDURE check_fornecedor_primario();
-CREATE TRIGGER check_fornecedor_primario_update BEFORE UPDATE ON fornece_sec
-FOR EACH ROW EXECUTE PROCEDURE check_fornecedor_primario();
-
