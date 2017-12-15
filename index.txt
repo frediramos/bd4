@@ -1,0 +1,7 @@
+
+1.
+Para esta query deve-se criar dois indices hash: um para a coluna categoria da tabela produto e um para a coluna nif da tabela fornecedor. Neste caso, é sempre preciso necessário à coluna forn_primario do registo retornado por cada procura ‘P.categoria’=Fruto, de forma a encontrar a string P.forn_primario, de forma a ser possível fazer a procura F.nif=P.forn_primario. Assim, esta procura não é ‘index-only’, sendo que é preciso aceder às tabelas de dados. 
+
+2.
+Nesta query criamos um índice do tipo B-Tree para a tabela produto ordenando por ean, sendo que a query envolve agrupar por ean (instrução group by ean).
+É também necessário criar um índice do tipo hash para a tabela fornece_sec, para a coluna ean, para que seja fácil endereçar a tabela fornece_sec de forma a encontrar o valor de ean que satisfaz a instrução 'where P.ean = F.ean’.
